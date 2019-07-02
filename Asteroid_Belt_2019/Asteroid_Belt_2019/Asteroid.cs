@@ -33,5 +33,17 @@ namespace Asteroid_Belt_2019
             g.DrawImage(asteroidImage, asteroidRec);
         }
 
+        public void moveAsteroid()
+        {
+            asteroidRec.Location = new Point(x, y);
+
+            if (asteroidRec.Location.Y > 420)
+            {
+                y = -20;
+                asteroidRec.Location = new Point(x, y);
+            }
+
+        }
+
     }
 }

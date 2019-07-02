@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlGame = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.tmrAsteroid = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // pnlGame
@@ -51,6 +53,11 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Asteroid Belt";
             // 
+            // tmrAsteroid
+            // 
+            this.tmrAsteroid.Enabled = true;
+            this.tmrAsteroid.Tick += new System.EventHandler(this.tmrAsteroid_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -69,6 +76,7 @@
 
         private System.Windows.Forms.Panel pnlGame;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer tmrAsteroid;
     }
 }
 
