@@ -11,19 +11,26 @@ namespace Asteroid_Belt_2019
     {
         // declare fields to use in the class
         public int x, y, width, height;//variables for the rectangle
-        public Image planetImage;//variable for the planet's image
-
-        public Rectangle planetRec;//variable for a rectangle to place our image in
+        public Image asteroidImage;//variable for the planet's image
+        public Rectangle asteroidRec;//variable for a rectangle to place our image in
         public int score;
+
         //Create a constructor (initialises the values of the fields)
-        public Asteroid()
+        public Asteroid(int spacing)
         {
-            x = 10;
+            x = spacing;
             y = 10;
-            width = 20;
-            height = 20;
-            planetImage = Image.FromFile("Asteroid.png");
-            planetRec = new Rectangle(x, y, width, height);
+            width = 30;
+            height = 30;
+            asteroidImage = Image.FromFile("Asteroid.png");
+            asteroidRec = new Rectangle(x, y, width, height);
+        }
+
+        // Methods for the Asteroid class
+        public void drawAsteroid(Graphics g)
+        {
+            asteroidRec = new Rectangle(x, y, width, height);
+            g.DrawImage(asteroidImage, asteroidRec);
         }
 
     }
