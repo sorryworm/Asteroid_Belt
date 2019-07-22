@@ -1,0 +1,10 @@
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\bin\Debug\Asteroid_Belt_2019.exe.config
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\bin\Debug\Asteroid_Belt_2019.exe
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\bin\Debug\Asteroid_Belt_2019.pdb
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.csprojAssemblyReference.cache
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.Form1.resources
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.Properties.Resources.resources
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.csproj.GenerateResource.cache
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.csproj.CoreCompileInputs.cache
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.exe
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.pdb
