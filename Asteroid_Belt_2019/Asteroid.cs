@@ -40,6 +40,7 @@ namespace Asteroid_Belt_2019
             if (asteroidRec.Location.Y > 420)
             {
                 y = -20;
+                score += 1;// add 1 to score when planet reaches bottom of panel
                 asteroidRec.Location = new Point(x, y);
             }
 

@@ -19,6 +19,7 @@ namespace Asteroid_Belt_2019
         Spaceship spaceship = new Spaceship();
         bool left, right;
         string move;
+        int score, lives;
 
 
         public Form1()
@@ -31,6 +32,11 @@ namespace Asteroid_Belt_2019
                 asteroid[i] = new Asteroid(x);
             }
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            lives = int.Parse(txtLives.Text);// pass lives entered from textbox to lives variable
         }
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
@@ -79,12 +85,36 @@ namespace Asteroid_Belt_2019
 
         private void tmrAsteroid_Tick(object sender, EventArgs e)
         {
+            score = 0;
             for (int i = 0; i < 7; i++)
             {
                 asteroid[i].moveAsteroid();
+                if (spaceship.spaceRec.IntersectsWith(asteroid[i].asteroidRec))
+                {
+                    //reset planet[i] back to top of panel
+                    asteroid[i].y = 30; // set  y value of planetRec
+                    lives -= 1;// lose a life
+                    txtLives.Text = lives.ToString();// display number of lives
+                    checkLives();
+                }
+                score += asteroid[i].score;// get score from Asteroid class (in moveAsteroid method)
+                lblScore.Text = score.ToString();// display score
+
             }
 
-         pnlGame.Invalidate();//makes the paint event fire to redraw the panel
+            pnlGame.Invalidate();//makes the paint event fire to redraw the panel
         }
+
+        private void checkLives()
+        {
+            if (lives == 0)
+            {
+                tmrAsteroid.Enabled = false;
+                tmrShip.Enabled = false;
+                MessageBox.Show("Game Over");
+
+            }
+        }
+
     }
 }
