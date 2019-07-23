@@ -18,8 +18,8 @@ namespace Asteroid_Belt_2019
         //Create a constructor (initialises the values of the fields)
         public Asteroid(int spacing)
         {
-            x = spacing;
-            y = 10;
+            x = 530;
+            y = spacing;
             width = 30;
             height = 30;
             asteroidImage = Image.FromFile("Asteroid.png");
@@ -37,9 +37,9 @@ namespace Asteroid_Belt_2019
         {
             asteroidRec.Location = new Point(x, y);
 
-            if (asteroidRec.Location.Y > 420)
+            if (asteroidRec.Location.X < -20)
             {
-                y = -20;
+                x = 530;
                 score += 1;// add 1 to score when planet reaches bottom of panel
                 asteroidRec.Location = new Point(x, y);
             }

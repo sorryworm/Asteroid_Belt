@@ -13,7 +13,6 @@ namespace Asteroid_Belt_2019
 
         public int x, y, width, height;//variables for the rectangle
         public Image spaceship;//variable for the planet's image
-
         public Rectangle spaceRec;//variable for a rectangle to place our image in
 
         //Create a constructor (initialises the values of the fields)
@@ -70,6 +69,35 @@ namespace Asteroid_Belt_2019
 
             }
 
+            if (move == "up")
+            {
+                if (spaceRec.Location.Y < 10) // is spaceship within 10 of left side
+                {
+
+                    y = 10;
+                    spaceRec.Location = new Point(x, y);
+                }
+                else
+                {
+                    y -= 5;
+                    spaceRec.Location = new Point(x, y);
+                }
+
+            }
+            if (move == "down")
+            {
+                if (spaceRec.Location.Y > 355) // is spaceship within 10 of left side
+                {
+
+                    y = 355;
+                    spaceRec.Location = new Point(x, y);
+                }
+                else
+                {
+                    y += 5;
+                    spaceRec.Location = new Point(x, y);
+                }
+            }
         }
     }
 }
