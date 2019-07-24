@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Asteroid_Belt_2019
@@ -20,6 +21,7 @@ namespace Asteroid_Belt_2019
         bool left, right, up, down;
         string move;
         int score, lives;
+        string playerName; //create a string value called playerName
 
 
         public Form1()
@@ -36,10 +38,12 @@ namespace Asteroid_Belt_2019
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Use the left and right arrow keys to move the spaceship. \n Don't get hit by the planets! \n Every planet that gets past scores a point. \n If a planet hits a spaceship a life is lost! \n \n Enter your Name press tab and enter the number of lives \n Click Start to begin", "Game Instructions");
+            MessageBox.Show("Use W, A, S and D to move the spaceship. \n Don't get hit by the asteroids! \n Every asteroid that you avoid scores one point. \n If your spaceship hits an asteroid, you will lose a life! \n \n Enter your name to begin the game and press start to begin.", "Game Instructions");
             txtName.Focus();
             tmrAsteroid.Enabled = false;
             tmrShip.Enabled = false;
+            mnuStop.Enabled = false;
+            mnuStart.Enabled = false;
         }
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
@@ -64,6 +68,8 @@ namespace Asteroid_Belt_2019
         {
             tmrShip.Enabled = false;
             tmrAsteroid.Enabled = false;
+            mnuStop.Enabled = false;
+            mnuStart.Enabled = true;
         }
 
         private void mnuStart_Click(object sender, EventArgs e)
@@ -73,6 +79,8 @@ namespace Asteroid_Belt_2019
             lives = int.Parse(txtLives.Text);// pass lives entered from textbox to lives variable
             tmrAsteroid.Enabled = true;
             tmrShip.Enabled = true;
+            mnuStart.Enabled = false;
+            mnuStop.Enabled = true;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -81,6 +89,26 @@ namespace Asteroid_Belt_2019
             if (e.KeyData == Keys.D) { right = true; }
             if (e.KeyData == Keys.W) { up = true; }
             if (e.KeyData == Keys.S) { down = true; }
+        }
+
+        private void btnEnter_Click(object sender, EventArgs e)
+        {
+            playerName = txtName.Text;
+
+            if (Regex.IsMatch(playerName, @"^[a-zA-Z]+$"))//checks playerName for letters
+            {
+                //if playerName valid (only letters) 
+                mnuStart.Enabled = true;
+                txtName.Enabled = false;//disables textbox to enter new name
+                btnEnter.Enabled = false;
+            }
+            else
+            {
+                //invalid playerName, clear txtName and focus on it to try again
+                MessageBox.Show("Please enter a name using letters only!");
+                txtName.Clear();
+                txtName.Focus();
+            }
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)

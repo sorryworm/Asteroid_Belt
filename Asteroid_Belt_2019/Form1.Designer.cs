@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlGame = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.tmrAsteroid = new System.Windows.Forms.Timer(this.components);
@@ -41,12 +42,14 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuStart = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStop = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEnter = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlGame
             // 
             this.pnlGame.BackColor = System.Drawing.Color.Silver;
+            this.pnlGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlGame.BackgroundImage")));
             this.pnlGame.Location = new System.Drawing.Point(91, 149);
             this.pnlGame.Name = "pnlGame";
             this.pnlGame.Size = new System.Drawing.Size(500, 400);
@@ -121,6 +124,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuStart,
             this.mnuStop});
@@ -144,11 +148,22 @@
             this.mnuStop.Text = "Stop";
             this.mnuStop.Click += new System.EventHandler(this.mnuStop_Click);
             // 
+            // btnEnter
+            // 
+            this.btnEnter.Location = new System.Drawing.Point(601, 83);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(75, 23);
+            this.btnEnter.TabIndex = 7;
+            this.btnEnter.Text = "Confirm";
+            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.txtLives);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -185,6 +200,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuStart;
         private System.Windows.Forms.ToolStripMenuItem mnuStop;
+        private System.Windows.Forms.Button btnEnter;
     }
 }
 
