@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Asteroid_Belt_2019
 {
@@ -22,11 +23,17 @@ namespace Asteroid_Belt_2019
         string move;
         int score, lives;
         string playerName; //create a string value called playerName
+        List<Plasma> plasma = new List<Plasma>(); //create a new list called plasma
+        int plasmaNumber = 2; //create an integer value called plasmaNumber
+        int plasmaTime = 10; //create an integer value called plasmaTime
 
 
         public Form1()
         {
             InitializeComponent();
+
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, pnlGame, new object[] { true });
+            //stops the panel from flickering
 
             for (int i = 0; i < 7; i++)
             {
@@ -62,6 +69,11 @@ namespace Asteroid_Belt_2019
             }
 
             spaceship.drawSpaceship(g);
+
+            foreach (Plasma m in plasma)
+            {
+                m.draw(g);
+            }
         }
 
         private void mnuStop_Click(object sender, EventArgs e)
@@ -143,6 +155,20 @@ namespace Asteroid_Belt_2019
             }
         }
 
+        private void pnlGame_MouseDown(object sender, MouseEventArgs e)
+        {
+            plasmaNumber--; //if left mouse button is pressed add a missile to the form
+            if ((e.Button == MouseButtons.Left) && plasmaNumber > 0)
+            {
+                plasma.Add(new Plasma(spaceship.spaceRec));
+                lblReload.Text = "Reload";
+            }
+            if (plasmaNumber == 0) //if plasma number = 0 start reload timer
+            {
+                tmrPlasmaRegeneration.Start();
+            }
+        }
+
         private void tmrAsteroid_Tick(object sender, EventArgs e)
         {
             score = 0;
@@ -163,6 +189,35 @@ namespace Asteroid_Belt_2019
             }
 
             pnlGame.Invalidate();//makes the paint event fire to redraw the panel
+        }
+
+        private void tmrShoot_Tick(object sender, EventArgs e)
+        {
+            foreach (Asteroid i in asteroid)
+            {
+                foreach (Plasma m in plasma)
+                {
+                    if (i.asteroidRec.IntersectsWith(m.plasmaRec)) //if an asteroid intersects with plasma, remove the plasma and relocate the asteroid back to the top of the form
+                    {
+                        plasma.Remove(m);
+                        i.x = 530;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void tmrPlasmaRegenration_Tick(object sender, EventArgs e)
+        {
+            plasmaTime--;
+            lblReload.Text = plasmaTime.ToString(); //convert plasma reload time to string
+            if (plasmaTime == 0) //if plasma time = 0 then stop the reload timer and set plasma number to 2, plasma time to 7 and display ready on the reload text
+            {
+                tmrPlasmaRegeneration.Stop();
+                plasmaNumber = 2;
+                plasmaTime = 10;
+                lblReload.Text = "Ready";
+            }
         }
 
         private void checkLives()
