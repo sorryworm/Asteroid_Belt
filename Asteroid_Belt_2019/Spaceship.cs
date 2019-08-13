@@ -15,7 +15,7 @@ namespace Asteroid_Belt_2019
         public Image spaceship;//variable for the planet's image
         public Rectangle spaceRec;//variable for a rectangle to place our image in
 
-        //Create a constructor (initialises the values of the fields)
+        //constructor to make values for spaceship
         public Spaceship()
         {
             x = 10;
@@ -26,26 +26,28 @@ namespace Asteroid_Belt_2019
             spaceRec = new Rectangle(x, y, width, height);
         }
 
-        //methods
+        //draw the spaceship image
         public void drawSpaceship(Graphics g)
         {
             spaceRec = new Rectangle(x, y, width, height);
             g.DrawImage(spaceship, spaceRec);
         }
 
+
+        //move the spaceship
         public void moveSpaceship(string move)
         {
             spaceRec.Location = new Point(x, y);
 
             if (move == "right")
             {
-                if (spaceRec.Location.X > 450) // is spaceship within 50 of right side
+                if (spaceRec.Location.X > 450) //if spaceship goes past right side of game panel move it back left
                 {
 
                     x = 450;
                     spaceRec.Location = new Point(x, y);
                 }
-                else
+                else //else keep on moving right
                 {
                     x += 5;
                     spaceRec.Location = new Point(x, y);
@@ -55,13 +57,13 @@ namespace Asteroid_Belt_2019
 
             if (move == "left")
             {
-                if (spaceRec.Location.X < 10) // is spaceship within 10 of left side
+                if (spaceRec.Location.X < 10) //if spaceship goes past left side of game panel move it back right
                 {
 
                     x = 10;
                     spaceRec.Location = new Point(x, y);
                 }
-                else
+                else //else keep moving left
                 {
                     x -= 5;
                     spaceRec.Location = new Point(x, y);
@@ -71,13 +73,13 @@ namespace Asteroid_Belt_2019
 
             if (move == "up")
             {
-                if (spaceRec.Location.Y < 10) // is spaceship within 10 of left side
+                if (spaceRec.Location.Y < 10) //if spaceship goes past top side of game panel move it back down
                 {
 
                     y = 10;
                     spaceRec.Location = new Point(x, y);
                 }
-                else
+                else //else keep moving up
                 {
                     y -= 5;
                     spaceRec.Location = new Point(x, y);
@@ -86,13 +88,13 @@ namespace Asteroid_Belt_2019
             }
             if (move == "down")
             {
-                if (spaceRec.Location.Y > 355) // is spaceship within 10 of left side
+                if (spaceRec.Location.Y > 355) //if spaceship goes past bottom side of game panel move it back up
                 {
 
                     y = 355;
                     spaceRec.Location = new Point(x, y);
                 }
-                else
+                else //else keep moving down
                 {
                     y += 5;
                     spaceRec.Location = new Point(x, y);

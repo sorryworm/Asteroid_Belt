@@ -15,13 +15,12 @@ namespace Asteroid_Belt_2019
     public partial class Form1 : Form
     {
         Graphics g; //declare a graphics object called g
-        // declare space for an array of 7 objects called planet 
-        Asteroid[] asteroid = new Asteroid[7];
-        Random xspeed = new Random();
-        Spaceship spaceship = new Spaceship();
-        bool left, right, up, down;
+        Asteroid[] asteroid = new Asteroid[7]; //declare array for 7 objects called asteroid
+        Random xspeed = new Random(); //random speed variable
+        Spaceship spaceship = new Spaceship(); //variable for spaceship object
+        bool left, right, up, down; //movement variables
         string move;
-        int score, lives;
+        int score, lives; //score and lives variable
         string playerName; //create a string value called playerName
         List<Plasma> plasma = new List<Plasma>(); //create a new list called plasma
         int plasmaNumber = 2; //create an integer value called plasmaNumber
@@ -35,7 +34,7 @@ namespace Asteroid_Belt_2019
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, pnlGame, new object[] { true });
             //stops the panel from flickering
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 7; i++) //code to spawn the asteroids
             {
                 int y = 10 + (i * 70);
                 asteroid[i] = new Asteroid(y);
@@ -43,14 +42,15 @@ namespace Asteroid_Belt_2019
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e) //code for when the form first loads
         {
-            MessageBox.Show("Use W, A, S and D to move the spaceship. \n Don't get hit by the asteroids! \n Every asteroid that you avoid scores one point. \n If your spaceship hits an asteroid, you will lose a life! \n \n Enter your name to begin the game and press start to begin.", "Game Instructions");
+            MessageBox.Show(" Use the W, A, S, D to move the spaceship. \n Use the left mouse button to fire a projectile (Press it again to reload). \n Don't get hit by the asteroids! \n Every asteroid that gets past score a point. \n If an asteroid hits the spaceship a life is lost! \n Escape the asteroid belt to view your highscore! \n \n Enter your name to unlock the start button \n Press Start to begin \n Try to escape the asteroid belt!", "Game Instructions");
             txtName.Focus();
             tmrAsteroid.Enabled = false;
             tmrShip.Enabled = false;
             mnuStop.Enabled = false;
             mnuStart.Enabled = false;
+            btnCheck.Enabled = false;
         }
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
@@ -76,7 +76,7 @@ namespace Asteroid_Belt_2019
             }
         }
 
-        private void mnuStop_Click(object sender, EventArgs e)
+        private void mnuStop_Click(object sender, EventArgs e) //if stop menu is pressed
         {
             tmrShip.Enabled = false;
             tmrAsteroid.Enabled = false;
@@ -84,7 +84,7 @@ namespace Asteroid_Belt_2019
             mnuStart.Enabled = true;
         }
 
-        private void mnuStart_Click(object sender, EventArgs e)
+        private void mnuStart_Click(object sender, EventArgs e) //if start menu is pressed
         {
             score = 0;
             lblScore.Text = score.ToString();
@@ -95,7 +95,7 @@ namespace Asteroid_Belt_2019
             mnuStop.Enabled = true;
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e) //if a key is pressed
         {
             if (e.KeyData == Keys.A) { left = true; }
             if (e.KeyData == Keys.D) { right = true; }
@@ -103,7 +103,7 @@ namespace Asteroid_Belt_2019
             if (e.KeyData == Keys.S) { down = true; }
         }
 
-        private void btnEnter_Click(object sender, EventArgs e)
+        private void btnEnter_Click(object sender, EventArgs e) //if enter button is pressed
         {
             playerName = txtName.Text;
 
@@ -174,6 +174,9 @@ namespace Asteroid_Belt_2019
             score = 0;
             for (int i = 0; i < 7; i++)
             {
+                checkScoreLvl1();
+                checkScoreLvl2();
+                checkScoreLvl3();
                 asteroid[i].moveAsteroid();
                 if (spaceship.spaceRec.IntersectsWith(asteroid[i].asteroidRec))
                 {
@@ -207,7 +210,7 @@ namespace Asteroid_Belt_2019
             }
         }
 
-        private void tmrPlasmaRegenration_Tick(object sender, EventArgs e)
+        private void tmrPlasmaRegenration_Tick(object sender, EventArgs e) 
         {
             plasmaTime--;
             lblReload.Text = plasmaTime.ToString(); //convert plasma reload time to string
@@ -220,14 +223,54 @@ namespace Asteroid_Belt_2019
             }
         }
 
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            frmHighscores frmHighscore2 = new frmHighscores(txtName.Text, txtLives.Text); //create a new form instance called frmHighscore2
+            Hide();
+            frmHighscore2.ShowDialog();
+        }
+
         private void checkLives()
         {
-            if (lives == 0)
+            if (lives == 0) //if lives = 0, disable timers and display game over message
             {
                 tmrAsteroid.Enabled = false;
                 tmrShip.Enabled = false;
+                mnuStart.Enabled = false;
+                mnuStop.Enabled = false;
                 MessageBox.Show("Game Over");
 
+            }
+        }
+
+        private void checkScoreLvl1()
+        {
+            if (score >= 15) //if score is equal to or over 20 then increase asteroid speed and display level 2
+            {
+                tmrAsteroid.Interval = 50;
+                lblLevel.Text = "Level 2";
+            }
+        }
+        private void checkScoreLvl2()
+        {
+            if (score >= 40) //is score is equal to or over 40 then increase asteroid speed and display level 3
+            {
+                tmrAsteroid.Interval = 35;
+                lblLevel.Text = "Level 3";
+            }
+        }
+        private void checkScoreLvl3()
+        {
+            if (score >= 80) //if score is equal to or over 80 disable timers to stop the game and display a message saying you won
+            {
+                tmrAsteroid.Enabled = false;
+                tmrShip.Enabled = false;
+                tmrShoot.Enabled = false;
+                mnuStart.Enabled = false;
+                mnuStop.Enabled = false;
+                btnCheck.Enabled = true;
+                MessageBox.Show("You have successfully escaped the astroid belt", "You Win!");
+                lblLevel.Text = "Well Done!";
             }
         }
 

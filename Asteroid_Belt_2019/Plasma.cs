@@ -9,7 +9,7 @@ namespace Asteroid_Belt_2019
 {
     class Plasma
     {
-        public int x, y, width, height;
+        public int x, y, width, height;//variables for dimensions
 
         public Image plasma;//variable for the missile's image
 
@@ -28,6 +28,7 @@ namespace Asteroid_Belt_2019
             plasmaRec = new Rectangle(x, y, width, height);
         }
 
+        //draw the missile
         public void draw(Graphics g)
         {
             x += 30;//speed of missile

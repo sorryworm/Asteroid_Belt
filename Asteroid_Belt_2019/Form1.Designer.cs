@@ -47,6 +47,8 @@
             this.tmrPlasmaRegeneration = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.lblReload = new System.Windows.Forms.Label();
+            this.lblLevel = new System.Windows.Forms.Label();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +56,7 @@
             // 
             this.pnlGame.BackColor = System.Drawing.Color.Cyan;
             this.pnlGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlGame.BackgroundImage")));
+            this.pnlGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlGame.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pnlGame.Location = new System.Drawing.Point(91, 149);
             this.pnlGame.Name = "pnlGame";
@@ -136,9 +139,9 @@
             this.txtLives.Image = ((System.Drawing.Image)(resources.GetObject("txtLives.Image")));
             this.txtLives.Location = new System.Drawing.Point(209, 92);
             this.txtLives.Name = "txtLives";
-            this.txtLives.Size = new System.Drawing.Size(13, 13);
+            this.txtLives.Size = new System.Drawing.Size(19, 13);
             this.txtLives.TabIndex = 2;
-            this.txtLives.Text = "5";
+            this.txtLives.Text = "10";
             // 
             // menuStrip1
             // 
@@ -220,12 +223,36 @@
             this.lblReload.TabIndex = 9;
             this.lblReload.Text = "Ready";
             // 
+            // lblLevel
+            // 
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLevel.ForeColor = System.Drawing.Color.Lime;
+            this.lblLevel.Image = ((System.Drawing.Image)(resources.GetObject("lblLevel.Image")));
+            this.lblLevel.Location = new System.Drawing.Point(553, 25);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(70, 24);
+            this.lblLevel.TabIndex = 10;
+            this.lblLevel.Text = "Level 1";
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.Location = new System.Drawing.Point(491, 111);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(181, 23);
+            this.btnCheck.TabIndex = 11;
+            this.btnCheck.Text = "Check for Highscore";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.btnCheck);
+            this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.lblReload);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnEnter);
@@ -270,6 +297,8 @@
         private System.Windows.Forms.Timer tmrPlasmaRegeneration;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblReload;
+        private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.Button btnCheck;
     }
 }
 

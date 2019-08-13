@@ -8,3 +8,4 @@ H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\
 H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.csproj.CoreCompileInputs.cache
 H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.exe
 H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.pdb
+H:\Computer Science\Game Design\Asteroid_Belt_2019\Asteroid_Belt_2019\obj\Debug\Asteroid_Belt_2019.frmHighscores.resources
