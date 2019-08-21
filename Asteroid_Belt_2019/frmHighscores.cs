@@ -79,10 +79,12 @@ namespace Asteroid_Belt_2019
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnReturn_Click_1(object sender, EventArgs e)
+        {
             SaveHighScores();
-            Form1 Form2 = new Form1();
-            Hide();
-            Form2.ShowDialog();
+            Application.Exit();
         }
     }
 }

@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tmrAsteroid = new System.Windows.Forms.Timer(this.components);
             this.tmrShip = new System.Windows.Forms.Timer(this.components);
-            this.txtName = new System.Windows.Forms.TextBox();
             this.lblScore = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,13 +41,14 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuStart = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStop = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnEnter = new System.Windows.Forms.Button();
             this.tmrShoot = new System.Windows.Forms.Timer(this.components);
             this.tmrPlasmaRegeneration = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.lblReload = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
             this.btnCheck = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +81,7 @@
             // tmrAsteroid
             // 
             this.tmrAsteroid.Enabled = true;
+            this.tmrAsteroid.Interval = 50;
             this.tmrAsteroid.Tick += new System.EventHandler(this.tmrAsteroid_Tick);
             // 
             // tmrShip
@@ -88,15 +89,6 @@
             this.tmrShip.Enabled = true;
             this.tmrShip.Interval = 50;
             this.tmrShip.Tick += new System.EventHandler(this.tmrShip_Tick);
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(491, 85);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 20);
-            this.txtName.TabIndex = 1;
-            this.txtName.Text = "Name";
-            this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblScore
             // 
@@ -126,7 +118,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.Location = new System.Drawing.Point(200, 71);
+            this.label3.Location = new System.Drawing.Point(249, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 5;
@@ -137,7 +129,7 @@
             this.txtLives.AutoSize = true;
             this.txtLives.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.txtLives.Image = ((System.Drawing.Image)(resources.GetObject("txtLives.Image")));
-            this.txtLives.Location = new System.Drawing.Point(209, 92);
+            this.txtLives.Location = new System.Drawing.Point(257, 92);
             this.txtLives.Name = "txtLives";
             this.txtLives.Size = new System.Drawing.Size(19, 13);
             this.txtLives.TabIndex = 2;
@@ -180,16 +172,6 @@
             this.mnuStop.Text = "Stop";
             this.mnuStop.Click += new System.EventHandler(this.mnuStop_Click);
             // 
-            // btnEnter
-            // 
-            this.btnEnter.Location = new System.Drawing.Point(601, 83);
-            this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(75, 23);
-            this.btnEnter.TabIndex = 7;
-            this.btnEnter.Text = "Confirm";
-            this.btnEnter.UseVisualStyleBackColor = true;
-            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
-            // 
             // tmrShoot
             // 
             this.tmrShoot.Enabled = true;
@@ -205,7 +187,7 @@
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
-            this.label4.Location = new System.Drawing.Point(321, 72);
+            this.label4.Location = new System.Drawing.Point(366, 72);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 8;
@@ -217,7 +199,7 @@
             this.lblReload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.lblReload.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.lblReload.Image = ((System.Drawing.Image)(resources.GetObject("lblReload.Image")));
-            this.lblReload.Location = new System.Drawing.Point(343, 92);
+            this.lblReload.Location = new System.Drawing.Point(389, 92);
             this.lblReload.Name = "lblReload";
             this.lblReload.Size = new System.Drawing.Size(38, 13);
             this.lblReload.TabIndex = 9;
@@ -229,7 +211,7 @@
             this.lblLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLevel.ForeColor = System.Drawing.Color.Lime;
             this.lblLevel.Image = ((System.Drawing.Image)(resources.GetObject("lblLevel.Image")));
-            this.lblLevel.Location = new System.Drawing.Point(553, 25);
+            this.lblLevel.Location = new System.Drawing.Point(521, 9);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(70, 24);
             this.lblLevel.TabIndex = 10;
@@ -237,13 +219,34 @@
             // 
             // btnCheck
             // 
-            this.btnCheck.Location = new System.Drawing.Point(491, 111);
+            this.btnCheck.Location = new System.Drawing.Point(523, 36);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(181, 23);
+            this.btnCheck.Size = new System.Drawing.Size(119, 23);
             this.btnCheck.TabIndex = 11;
             this.btnCheck.Text = "Check for Highscore";
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
+            this.label5.Location = new System.Drawing.Point(553, 72);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Name:";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.lblName.Image = ((System.Drawing.Image)(resources.GetObject("lblName.Image")));
+            this.lblName.Location = new System.Drawing.Point(553, 92);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(0, 13);
+            this.lblName.TabIndex = 13;
             // 
             // Form1
             // 
@@ -251,16 +254,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.lblReload);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.txtLives);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblScore);
-            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlGame);
             this.Controls.Add(this.menuStrip1);
@@ -284,7 +287,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer tmrAsteroid;
         private System.Windows.Forms.Timer tmrShip;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -292,13 +294,14 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuStart;
         private System.Windows.Forms.ToolStripMenuItem mnuStop;
-        private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Timer tmrShoot;
         private System.Windows.Forms.Timer tmrPlasmaRegeneration;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblReload;
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblName;
     }
 }
 

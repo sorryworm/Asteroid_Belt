@@ -21,16 +21,16 @@ namespace Asteroid_Belt_2019
         bool left, right, up, down; //movement variables
         string move;
         int score, lives; //score and lives variable
-        string playerName; //create a string value called playerName
         List<Plasma> plasma = new List<Plasma>(); //create a new list called plasma
         int plasmaNumber = 2; //create an integer value called plasmaNumber
         int plasmaTime = 10; //create an integer value called plasmaTime
 
 
-        public Form1()
+        public Form1(string text)
         {
             InitializeComponent();
 
+            lblName.Text = text;
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, pnlGame, new object[] { true });
             //stops the panel from flickering
 
@@ -44,12 +44,9 @@ namespace Asteroid_Belt_2019
 
         private void Form1_Load(object sender, EventArgs e) //code for when the form first loads
         {
-            MessageBox.Show(" Use the W, A, S, D to move the spaceship. \n Use the left mouse button to fire a projectile (Press it again to reload). \n Don't get hit by the asteroids! \n Every asteroid that gets past score a point. \n If an asteroid hits the spaceship a life is lost! \n Escape the asteroid belt to view your highscore! \n \n Enter your name to unlock the start button \n Press Start to begin \n Try to escape the asteroid belt!", "Game Instructions");
-            txtName.Focus();
             tmrAsteroid.Enabled = false;
             tmrShip.Enabled = false;
             mnuStop.Enabled = false;
-            mnuStart.Enabled = false;
             btnCheck.Enabled = false;
         }
 
@@ -105,22 +102,6 @@ namespace Asteroid_Belt_2019
 
         private void btnEnter_Click(object sender, EventArgs e) //if enter button is pressed
         {
-            playerName = txtName.Text;
-
-            if (Regex.IsMatch(playerName, @"^[a-zA-Z]+$"))//checks playerName for letters
-            {
-                //if playerName valid (only letters) 
-                mnuStart.Enabled = true;
-                txtName.Enabled = false;//disables textbox to enter new name
-                btnEnter.Enabled = false;
-            }
-            else
-            {
-                //invalid playerName, clear txtName and focus on it to try again
-                MessageBox.Show("Please enter a name using letters only!");
-                txtName.Clear();
-                txtName.Focus();
-            }
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -225,7 +206,7 @@ namespace Asteroid_Belt_2019
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            frmHighscores frmHighscore2 = new frmHighscores(txtName.Text, txtLives.Text); //create a new form instance called frmHighscore2
+            frmHighscores frmHighscore2 = new frmHighscores(lblName.Text, txtLives.Text); //create a new form instance called frmHighscore2
             Hide();
             frmHighscore2.ShowDialog();
         }
@@ -245,9 +226,9 @@ namespace Asteroid_Belt_2019
 
         private void checkScoreLvl1()
         {
-            if (score >= 15) //if score is equal to or over 20 then increase asteroid speed and display level 2
+            if (score >= 15) //if score is equal to or over 15 then increase asteroid speed and display level 2
             {
-                tmrAsteroid.Interval = 50;
+                tmrAsteroid.Interval = 35;
                 lblLevel.Text = "Level 2";
             }
         }
@@ -255,7 +236,7 @@ namespace Asteroid_Belt_2019
         {
             if (score >= 40) //is score is equal to or over 40 then increase asteroid speed and display level 3
             {
-                tmrAsteroid.Interval = 35;
+                tmrAsteroid.Interval = 20;
                 lblLevel.Text = "Level 3";
             }
         }
